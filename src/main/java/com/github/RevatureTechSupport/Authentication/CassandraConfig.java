@@ -16,7 +16,7 @@ import java.util.List;
 @PropertySource("classpath:application.properties")
 public class CassandraConfig extends AbstractReactiveCassandraConfiguration {
 
-  @Value("${cassandra.contactpoint}")
+  @Value("${cassandra.contactPoint}")
   private String contactPoint;
 
   @Value("${cassandra.keyspace}")
@@ -28,7 +28,7 @@ public class CassandraConfig extends AbstractReactiveCassandraConfiguration {
   }
 
   public String[] getEntityBasePackage() {
-    return new String[] {"com.github.RevatureTechSupport.Authentication.domain"};
+    return new String[] {"com.github.TechSupport.Authentication.domain"};
   }
 
   @Override

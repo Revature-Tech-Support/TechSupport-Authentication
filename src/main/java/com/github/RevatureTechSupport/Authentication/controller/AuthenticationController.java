@@ -11,32 +11,30 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/user")
 public class AuthenticationController {
 
-//  private static final Logger log =
-//      (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("controller");
-//
-//  private final AuthenticationService service;
-//
-//  /**
-//   * Constructor for the Rest Controller
-//   *
-//   * @author Andrew Gregersen
-//   * @param service: The AccountService for this instance of the server
-//   */
-//  public AuthenticationController(AuthenticationService service) {
-//    log.info("Creating new AccountController");
-//    this.service = service;
-//  }
-//
-//  /**
-//   * A REST endpoint (GET) to retrieve all accounts that are in the Cassandra Database
-//   *
-//   * @author Andrew Gregersen
-//   * @return A Flux of all Accounts in the database
-//   */
-//  @GetMapping("/login")
-//  public Flux<Account> getAll() {
-//    log.info("Retrieving all Accounts");
-//    return service.getAll();
-//  }
+  private static final Logger log =
+      (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("controller");
+
+  private final AuthenticationService service;
+  /**
+   * Constructor for the Rest Controller
+   *
+   * @author Andrew Gregersen
+   * @param service: The AccountService for this instance of the server
+   */
+  public AuthenticationController(AuthenticationService service) {
+    log.info("Creating new AccountController");
+    this.service = service;
+  }
+  /**
+   * A REST endpoint (GET) to retrieve all accounts that are in the Cassandra Database
+   *
+   * @author Andrew Gregersen
+   * @return A Flux of all Accounts in the database
+   */
+  @GetMapping("/login")
+  public Flux<User> getAll() {
+    log.info("Retrieving all users");
+    return service.getAll();
+  }
 
 }

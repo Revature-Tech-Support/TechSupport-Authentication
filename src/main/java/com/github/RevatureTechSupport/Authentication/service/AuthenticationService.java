@@ -8,15 +8,15 @@ import reactor.core.publisher.Mono;
 @Service
 public class AuthenticationService {
 
-//  private final com.github.RevatureTechSupport.Authentication.repository.AuthenticationRepository repo;
-//
-//  public AuthenticationService(com.github.RevatureTechSupport.Authentication.repository.AuthenticationRepository repo) {
-//    this.repo = repo;
-//  }
-//
-//  public Flux<User> getAll() {
-//    return repo.findAll();
-//  }
+  private final com.github.RevatureTechSupport.Authentication.repository.AuthenticationRepository repo;
+
+  public AuthenticationService(com.github.RevatureTechSupport.Authentication.repository.AuthenticationRepository repo) {
+    this.repo = repo;
+  }
+
+  public Flux<User> getAll() {
+    return repo.findAll();
+  }
 //
 //  public Mono<User> get(Integer id) {
 //    return repo.findById(id);
