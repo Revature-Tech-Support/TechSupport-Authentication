@@ -1,13 +1,15 @@
 package com.github.RevatureTechSupport.Authentication.domain;
 
+import java.util.UUID;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import javax.annotation.Nonnull;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @Table("User")
 public class User {
-  @PrimaryKey private Integer userID;
+  @PrimaryKey private UUID userID;
   private String username;
   private String password;
   private boolean isTechAgent;
@@ -19,24 +21,35 @@ public class User {
 
   public User() {}
 
-  public User(Integer userID, String username, String password) {
-    this.userID = userID;
+  // Constructor for login. Don't know isTechAgent or userID yet.
+  public User(String username, String password) {
+    this.userID = UUID.randomUUID();
     this.username = username;
     this.password = password;
+    this.isTechAgent = false;
   }
 
-  public User(Integer userID, String username, String password, boolean isTechAgent) {
+  // Constructor for registration. Creates new userID for user.
+  public User(String username, String password, boolean isTechAgent){
+    this.userID = UUID.randomUUID();
+    this.username = username;
+    this.password = password;
+    this.isTechAgent = isTechAgent;
+  }
+
+  // Constructor for full User for when pulling from repository.
+  public User(UUID userID, String username, String password, boolean isTechAgent) {
     this.userID = userID;
     this.username = username;
     this.password = password;
     this.isTechAgent = isTechAgent;
   }
 
-  public Integer getUserID() {
+  public UUID getUserID() {
     return userID;
   }
 
-  public void setUserID(Integer userID) {
+  public void setUserID(UUID userID) {
     this.userID = userID;
   }
 
@@ -48,7 +61,7 @@ public class User {
     this.username = username;
   }
 
-  public String gePassword() {
+  public String getPassword() {
     return password;
   }
 
@@ -62,5 +75,9 @@ public class User {
 
   public void setIsTechAgent(boolean isTechAgent) {
     this.isTechAgent = isTechAgent;
+  }
+
+  public boolean testPassword(String hashed_password){
+    return BCrypt.checkpw(this.password, hashed_password);
   }
 }

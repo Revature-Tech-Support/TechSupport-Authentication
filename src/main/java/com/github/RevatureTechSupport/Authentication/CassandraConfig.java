@@ -16,7 +16,7 @@ import java.util.List;
 @PropertySource("classpath:application.properties")
 public class CassandraConfig extends AbstractReactiveCassandraConfiguration {
 
-  @Value("${cassandra.contactPoint}")
+  @Value("${cassandra.contactpoint}")
   private String contactPoint;
 
   @Value("${cassandra.keyspace}")

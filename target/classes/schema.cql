@@ -3,40 +3,39 @@ CREATE KEYSPACE IF NOT EXISTS TechSupport WITH replication = {'class': 'SimpleSt
 USE TechSupport;
 
 CREATE TABLE IF NOT EXISTS User (
-    userID INT,
-    username TEXT,
-    password TEXT,
-    isTechAgent BOOLEAN,
-    PRIMARY KEY (userID)
-    );
+  userID UUID,
+  username TEXT,
+  password TEXT,
+  isTechAgent BOOLEAN,
+  PRIMARY KEY (userID)
+  );
 
 CREATE TABLE IF NOT EXISTS Issue (
-    issueID INT,
-    issueTitle TEXT,
-    openedBy INT,
-    closedBy INT,
-    openTime TIMESTAMP,
-    closedTime TIMESTAMP,
-    inProgress BOOLEAN,
-    PRIMARY KEY (issueID)
-    );
+  issueID UUID,
+  issueTitle TEXT,
+  openedBy UUID,
+  closedBy UUID,
+  openTime TIMESTAMP,
+  reviewTime TIMESTAMP,
+  closedTime TIMESTAMP,
+  inQueue BOOLEAN,
+  PRIMARY KEY (issueID)
+  );
 
 CREATE TABLE IF NOT EXISTS Chat (
-    issueID INT,
-    chatID INT,
-    issueTitle TEXT,
-    user INT,
-    agent INT,
-    active BOOLEAN,
-    PRIMARY KEY (issueID, agent)
-    );
+  issueID UUID,
+  chatID UUID,
+  issueTitle TEXT,
+  user UUID,
+  agent UUID,
+  active BOOLEAN,
+  PRIMARY KEY (issueID, agent)
+  );
 
 CREATE TABLE IF NOT EXISTS Message (
-    messageID INT,
-    chatID INT,
-    message TEXT,
-    postedBy INT,
-    postTime TIMESTAMP,
-    fileID INT,
-    PRIMARY KEY (messageID, chatID)
-);
+  messageID UUID,
+  message TEXT,
+  postedBy UUID,
+  postTime TIMESTAMP,
+  PRIMARY KEY (messageID, chatID)
+  );
