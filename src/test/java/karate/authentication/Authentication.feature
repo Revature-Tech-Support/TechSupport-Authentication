@@ -16,7 +16,7 @@ Feature: Authenticaion Test
 		And header Accept = 'application/json'
 		When method post
 		Then Status 201
-		And match response == {'username':'andrew', 'password':'test','isTechAgent':'false'}
+		And match response == {'username':'andrew','isTechAgent':'false'}
 		
 	Scenario: Create another Account
 		Given path authBase
@@ -24,23 +24,25 @@ Feature: Authenticaion Test
 		And header Accept = 'application/json'
 		When method post
 		Then Status 201
-		And match response == {'username':'LanChi', 'password':'test2','isTechAgent':'true'}
+		And match response == {'username':'LanChi','isTechAgent':'true'}
 	
 	Scenario: Login to an account with correct information
 		Given path authBase + 'login'
 		And request {'username':'LanChi', 'password':'test2'}
 		When method GET
 		Then status 200
-		And match response == {'username':'LanChi', 'password':'test2','isTechAgent':'true'}
+		And match response == {'username':'LanChi','isTechAgent':'true'}
 		
 	Scenario: Login to an account with incorrect username
 		Given path authBase + 'login'
 		And request {'username':'Andrew', 'password':'test'}
 		When method GET
-		Then status 404
+		Then status 200
+		And match response == {}
 		
 	Scenario: Login to an account with incorrect password
 		Given path authBase + 'login'
 		And request {'username':'andrew', 'password':'test2'}
 		When method GET
-		Then status 404
+		Then status 200
+		And match response == {}

@@ -31,9 +31,10 @@ public class User {
 
   // Constructor for registration. Creates new userID for user.
   public User(String username, String password, boolean isTechAgent){
+    String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
     this.userID = UUID.randomUUID();
     this.username = username;
-    this.password = password;
+    this.password = pw_hash;
     this.isTechAgent = isTechAgent;
   }
 
@@ -79,5 +80,9 @@ public class User {
 
   public boolean testPassword(String hashed_password){
     return BCrypt.checkpw(this.password, hashed_password);
+  }
+
+  public boolean testUserID(UUID other_uuid){
+    return this.userID == other_uuid;
   }
 }

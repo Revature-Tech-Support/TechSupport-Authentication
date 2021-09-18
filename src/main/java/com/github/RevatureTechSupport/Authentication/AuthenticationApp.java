@@ -1,5 +1,6 @@
 package com.github.RevatureTechSupport.Authentication;
 
+import com.github.RevatureTechSupport.Authentication.controller.AuthenticationController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +19,7 @@ import reactor.netty.http.server.HttpServer;
 @PropertySource("classpath:application.properties")
 public class AuthenticationApp {
   private @Autowired
-  com.github.RevatureTechSupport.Authentication.controller.AuthenticationController controller;
+  AuthenticationController controller;
 
   @Value("${server.port}")
   private String port;
