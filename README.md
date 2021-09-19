@@ -12,15 +12,22 @@ User registration and login services that includes a simple authentication check
 - Karate
 - BCrypt
 
+## User Stories
+### IT Support Professional
+- To create an account
+- To login to an existing account
+
+### User
+- To create an account
+- To login to an existing account
+
 ## Getting Started
-To get started simply clone the repository:
-```git clone https://github.com/Revature-Tech-Support/TechSupport-Authentication.git```
-As well as cloning the gateway and eureka server
-```git clone https://github.com/Revature-Tech-Support/TechSupport-Gateway.git```
-
-To run you'll also need to have a docker container with Cassandra running.
-
-Open the projects in IntelliJ, and start up the eureka and gateway services. Then all you have to do is run the AuthenicationApp to get the service running.
+- To get started simply clone the repository:
+- ```git clone https://github.com/Revature-Tech-Support/TechSupport-Authentication.git```
+- As well as cloning the gateway and eureka server
+- ```git clone https://github.com/Revature-Tech-Support/TechSupport-Gateway.git```
+- To run you'll also need to have a docker container with Cassandra running.
+- Open the projects in IntelliJ, and start up the eureka and gateway services. Then all you have to do is run the AuthenicationApp to get the service running.
 
 ## Endpoints
 ### localhost:8080/user
