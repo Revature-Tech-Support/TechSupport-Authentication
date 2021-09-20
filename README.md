@@ -1,7 +1,28 @@
 # TechSupport-Authentication
+Repository for the authentication feature in the application.
+
+
+## Client Specifications:
+- Test Driven Development (TDD)
+
+
+## Goal:
 User registration and login services that includes a simple authentication check.
 
-## Technologies Used
+
+## User Stories:
+### IT Support Professional
+- As a IT Support Professional
+- I want authentication
+- So that I can create an account and/or login to an existing account
+
+### User
+- As a User
+- I want authentication
+- So that I can create an account and/or login to an existing account
+
+
+## Technology:
 - Java 11
 - IntelliJ
 - Docker
@@ -12,22 +33,19 @@ User registration and login services that includes a simple authentication check
 - Karate
 - BCrypt
 
-## User Stories
-### IT Support Professional
-- To create an account
-- To login to an existing account
-
-### User
-- To create an account
-- To login to an existing account
 
 ## Getting Started
 - To get started simply clone the repository:
-- ```git clone https://github.com/Revature-Tech-Support/TechSupport-Authentication.git```
+
+`git clone https://github.com/Revature-Tech-Support/TechSupport-Authentication.git`
+
 - As well as cloning the gateway and eureka server
-- ```git clone https://github.com/Revature-Tech-Support/TechSupport-Gateway.git```
+
+`git clone https://github.com/Revature-Tech-Support/TechSupport-Gateway.git`
+
 - To run you'll also need to have a docker container with Cassandra running.
 - Open the projects in IntelliJ, and start up the eureka and gateway services. Then all you have to do is run the AuthenicationApp to get the service running.
+
 
 ## Endpoints
 ### localhost:8080/user
