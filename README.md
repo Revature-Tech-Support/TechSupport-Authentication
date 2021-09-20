@@ -24,9 +24,8 @@ User registration and login services that includes a simple authentication check
 
 ## Technology:
 - Java 11
-- IntelliJ
 - Docker
-- Springboot
+- Spring Boot
 - Spring Webflux
 - Spring Data
 - Cassandra
