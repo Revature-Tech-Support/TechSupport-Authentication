@@ -34,7 +34,7 @@ User registration and login services that includes a simple authentication check
 
 
 ## Getting Started
-- To get started simply clone the repository:
+- To get started, simply clone the repository:
 
 `git clone https://github.com/Revature-Tech-Support/TechSupport-Authentication.git`
 
@@ -42,20 +42,21 @@ User registration and login services that includes a simple authentication check
 
 `git clone https://github.com/Revature-Tech-Support/TechSupport-Gateway.git`
 
-- To run you'll also need to have a docker container with Cassandra running.
-- Open the projects in IntelliJ, and start up the eureka and gateway services. Then all you have to do is run the AuthenicationApp to get the service running.
+- To run the repositories, you'll also need to have a Docker container with Cassandra running.
+- Open the projects in your IDE, and start up the Eureka and Gateway services. Then all you have to do is run the AuthenicationApp to get the service running.
+- Alternatively, you can cd into the repository folder on your computer and run ```mvn spring-boot:run``` in the command line.
 
 
 ## Endpoints
 ### localhost:8080/user
 - Takes POST requests with JSON in the request body. JSON should have keys "username", "password", and "isTechAgent". 
-- This will cause the microservice to create a new user in the cassandra database with a unique userID. 
-- The service will then return status 200 along with a JSON response body consisting of the new user's "userID", "username" and "isTechAgent". 
+- This will create a new user in the Cassandra database with a unique userID. 
+- If the creation is successful, the service will then return status "200" along with a JSON response body consisting of the new user's "userID", "username" and "isTechAgent". 
 - If a user with the same username is already in the database, then the program returns an empty body response and does not create a new user. 
-- Passwords are encrypted before being put into the database.
+- Passwords are encrypted before being inserted into the database.
 
 ### localhost:8080/user/login
 - Takes GET requests with JSON in the request body. JSON should have keys "username" and "password". 
 - The microservice will then find a user with the same username in the database and check if the provided password is a match with the encrypted one in the database.
-- If the passwords match, the service return status 200 along with a JSON response body consisting of the new user's "userID", "username" and "isTechAgent".
-- If the passwords do not match or there is no user with that user name, the service return status 200 and an empty body response.
+- If the passwords match, the service returns status "200" along with a JSON response body consisting of the new user's "userID", "username" and "isTechAgent".
+- If the passwords do not match or there is no user with that username, the service returns status "200" and an empty body response.
