@@ -31,6 +31,7 @@ public class User {
 
   // Constructor for registration. Creates new userID for user.
   public User(String username, String password, boolean isTechAgent){
+    //The hashpw method hashes password with a random salt.
     String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
     this.userID = UUID.randomUUID();
     this.username = username;
@@ -79,6 +80,7 @@ public class User {
   }
 
   public boolean testPassword(String hashed_password){
+    //The checkpw method checks whether a plaintext password matches one that has been hashed previously.
     return BCrypt.checkpw(this.password, hashed_password);
   }
 
