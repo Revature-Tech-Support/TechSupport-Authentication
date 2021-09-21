@@ -1,0 +1,29 @@
+body {
+  text-align: center;
+}
+
+.jumbotron {
+  background-color: rgb(247, 119, 0);
+}
+
+.nav-link {
+  color: white !important;
+  padding: 10px !important;
+}
+
+.ticketContainer {
+  width: 50%;
+}
+
+.card {
+  margin: auto;
+}
+
+.sheet {
+  border: 2px solid black;
+  box-shadow: 5px 10px gray;
+}
+
+.transcripts {
+  margin-left: 100px;
+}
