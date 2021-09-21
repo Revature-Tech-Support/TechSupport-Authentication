@@ -15,7 +15,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 import reactor.netty.http.server.HttpServer;
 
 @SpringBootApplication
-@EnableEurekaClient
+// @EnableEurekaClient
 @PropertySource("classpath:application.properties")
 public class AuthenticationApp {
   private @Autowired

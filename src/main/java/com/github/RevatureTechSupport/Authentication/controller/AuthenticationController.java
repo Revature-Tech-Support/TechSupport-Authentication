@@ -10,6 +10,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/user")
 public class AuthenticationController {
 
@@ -23,6 +24,7 @@ public class AuthenticationController {
     this.service = service;
   }
 
+
   @PostMapping("")
   public Mono<passbackUser> createUser(@RequestBody registerUserJSON userJSON) {
     User new_user = new User(userJSON.getUsername(), userJSON.getPassword(), userJSON.getIsTechAgentBool());
@@ -30,15 +32,15 @@ public class AuthenticationController {
     return service.createUser(new_user).map(this::userToPassback);
   }
 
-  @GetMapping("/login")
+  @PutMapping("/login")
   public Mono<passbackUser> getUser(@RequestBody loginUserJSON userJSON) {
     User login_user = new User(userJSON.getUsername(), userJSON.getPassword());
     log.info("Accessing user " + login_user.getUsername());
     return service.getUser(login_user).map(this::userToPassback);
   }
 
-  private passbackUser userToPassback(User recieved_user){
-    return new passbackUser(recieved_user.getUserID(), recieved_user.getUsername(), recieved_user.getIsTechAgent());
+  private passbackUser userToPassback(User received_user){
+    return new passbackUser(received_user.getUserID(), received_user.getUsername(), received_user.getIsTechAgent());
   }
 }
 
