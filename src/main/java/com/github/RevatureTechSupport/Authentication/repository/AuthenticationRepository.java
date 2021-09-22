@@ -9,6 +9,6 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface AuthenticationRepository extends ReactiveCassandraRepository<User, UUID> {
-  @Query(value="SELECT * FROM User WHERE username = ?0 ALLOW FILTERING", allowFiltering= true )
+  @Query(value = "SELECT * FROM User WHERE username = ?0 ALLOW FILTERING", allowFiltering = true)
   Mono<User> logIn(String username);
 }

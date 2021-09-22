@@ -14,18 +14,18 @@ public class AuthenticationService {
     this.repo = repo;
   }
   
-  public Mono<User> createUser(User new_user){
+  public Mono<User> createUser(User new_user) {
     return repo.logIn(new_user.getUsername())
         .defaultIfEmpty(new_user)
         .flatMap(this::saveUser)
         .filter(user -> new_user.testUserID(user.getUserID()));
   }
 
-  private Mono<User> saveUser(User new_user){
+  private Mono<User> saveUser(User new_user) {
     return repo.save(new_user);
   }
 
-  public Mono<User> getUser(User login_user){
+  public Mono<User> getUser(User login_user) {
     return repo.logIn(login_user.getUsername()).filter(user -> login_user.testPassword(user.getPassword()));
   }
 }

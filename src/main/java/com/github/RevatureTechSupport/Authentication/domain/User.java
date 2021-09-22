@@ -9,7 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @Table("User")
 public class User {
-  @PrimaryKey private UUID userID;
+  @PrimaryKey
+  private UUID userID;
   private String username;
   private String password;
   private boolean isTechAgent;
@@ -19,7 +20,8 @@ public class User {
     return new User(a.userID, a.username, a.password, a.isTechAgent);
   }
 
-  public User() {}
+  public User() {
+  }
 
   // Constructor for login. Don't know isTechAgent or userID yet.
   public User(String username, String password) {
@@ -30,8 +32,8 @@ public class User {
   }
 
   // Constructor for registration. Creates new userID for user.
-  public User(String username, String password, boolean isTechAgent){
-    //The hashpw method hashes password with a random salt.
+  public User(String username, String password, boolean isTechAgent) {
+    // The hashpw method hashes password with a random salt.
     String pw_hash = BCrypt.hashpw(password, BCrypt.gensalt());
     this.userID = UUID.randomUUID();
     this.username = username;
@@ -79,12 +81,13 @@ public class User {
     this.isTechAgent = isTechAgent;
   }
 
-  public boolean testPassword(String hashed_password){
-    //The checkpw method checks whether a plaintext password matches one that has been hashed previously.
+  public boolean testPassword(String hashed_password) {
+    // The checkpw method checks whether a plaintext password matches one that has
+    // been hashed previously.
     return BCrypt.checkpw(this.password, hashed_password);
   }
 
-  public boolean testUserID(UUID other_uuid){
+  public boolean testUserID(UUID other_uuid) {
     return this.userID == other_uuid;
   }
 }

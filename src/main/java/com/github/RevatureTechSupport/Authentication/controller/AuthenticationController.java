@@ -6,16 +6,13 @@ import com.github.RevatureTechSupport.Authentication.service.AuthenticationServi
 import java.util.UUID;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/user")
 public class AuthenticationController {
 
-  private static final Logger log =
-      (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("controller");
+  private static final Logger log = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("controller");
 
   private final AuthenticationService service;
 
@@ -24,7 +21,6 @@ public class AuthenticationController {
     this.service = service;
   }
 
-
   @PostMapping("")
   public Mono<passbackUser> createUser(@RequestBody registerUserJSON userJSON) {
     User new_user = new User(userJSON.getUsername(), userJSON.getPassword(), userJSON.getIsTechAgentBool());
@@ -32,22 +28,23 @@ public class AuthenticationController {
     return service.createUser(new_user).map(this::userToPassback);
   }
 
-  @PutMapping("/login")
+  @PostMapping("/login")
   public Mono<passbackUser> getUser(@RequestBody loginUserJSON userJSON) {
     User login_user = new User(userJSON.getUsername(), userJSON.getPassword());
     log.info("Accessing user " + login_user.getUsername());
     return service.getUser(login_user).map(this::userToPassback);
   }
 
-  private passbackUser userToPassback(User received_user){
+  private passbackUser userToPassback(User received_user) {
     return new passbackUser(received_user.getUserID(), received_user.getUsername(), received_user.getIsTechAgent());
   }
 }
 
 // This is dirty code to ensure the JSON gets properly mapped.
-// It didn't seem to be picking the correct constructors for User. So made these to just grab
+// It didn't seem to be picking the correct constructors for User. So made these
+// to just grab
 // the JSON data I needed and then pick the correct constructor from there.
-class registerUserJSON{
+class registerUserJSON {
   private String username;
   private String password;
   private String isTechAgent;
@@ -56,12 +53,13 @@ class registerUserJSON{
     return (this.isTechAgent.contains("True") || this.isTechAgent.contains("true"));
   }
 
-  public registerUserJSON(){
+  public registerUserJSON() {
     this.username = "None";
     this.password = "None";
     this.isTechAgent = "None";
   }
-  public registerUserJSON(String username, String password, String isTechAgent){
+
+  public registerUserJSON(String username, String password, String isTechAgent) {
     this.username = username;
     this.password = password;
     this.isTechAgent = isTechAgent;
@@ -92,14 +90,16 @@ class registerUserJSON{
   }
 }
 
-class loginUserJSON{
+class loginUserJSON {
   private String username;
   private String password;
-  public loginUserJSON(){
+
+  public loginUserJSON() {
     this.username = "None";
     this.password = "None";
   }
-  public loginUserJSON(String username, String password){
+
+  public loginUserJSON(String username, String password) {
     this.username = username;
     this.password = password;
   }
@@ -121,11 +121,12 @@ class loginUserJSON{
   }
 }
 
-class passbackUser{
+class passbackUser {
   private UUID userID;
   private String username;
   private boolean isTechAgent;
-  public passbackUser(UUID userID, String username, boolean isTechAgent){
+
+  public passbackUser(UUID userID, String username, boolean isTechAgent) {
     this.userID = userID;
     this.username = username;
     this.isTechAgent = isTechAgent;

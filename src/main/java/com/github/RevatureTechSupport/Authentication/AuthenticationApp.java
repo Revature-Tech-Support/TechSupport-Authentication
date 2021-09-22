@@ -1,7 +1,5 @@
 package com.github.RevatureTechSupport.Authentication;
 
-import com.github.RevatureTechSupport.Authentication.controller.AuthenticationController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,12 +13,9 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 import reactor.netty.http.server.HttpServer;
 
 @SpringBootApplication
-// @EnableEurekaClient
+@EnableEurekaClient
 @PropertySource("classpath:application.properties")
 public class AuthenticationApp {
-  private @Autowired
-  AuthenticationController controller;
-
   @Value("${server.port}")
   private String port;
 
