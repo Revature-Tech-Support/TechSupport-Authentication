@@ -1,2 +1,6 @@
 .idea
-target
+target/
+.settings/
+.classpath
+.factorypath
+.project
