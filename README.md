@@ -48,15 +48,15 @@ User registration and login services that includes a simple authentication check
 
 
 ## Endpoints
-### localhost:8080/user
-- Takes POST requests with JSON in the request body. JSON should have keys "username", "password", and "isTechAgent". 
-- This will create a new user in the Cassandra database with a unique userID. 
-- If the creation is successful, the service will then return status "200" along with a JSON response body consisting of the new user's "userID", "username" and "isTechAgent". 
-- If a user with the same username is already in the database, then the program returns an empty body response and does not create a new user. 
-- Passwords are encrypted before being inserted into the database.
+- POST `localhost:8080/user`
+  - Takes POST requests with JSON in the request body. JSON should have keys "username", "password", and "isTechAgent". 
+  - This will create a new user in the Cassandra database with a unique userID. 
+  - If the creation is successful, the service will then return status "200" along with a JSON response body consisting of the new user's "userID", "username" and "isTechAgent". 
+  - If a user with the same username is already in the database, then the program returns an empty body response and does not create a new user. 
+  - Passwords are encrypted before being inserted into the database.
 
-### localhost:8080/user/login
-- Takes GET requests with JSON in the request body. JSON should have keys "username" and "password". 
-- The microservice will then find a user with the same username in the database and check if the provided password is a match with the encrypted one in the database.
-- If the passwords match, the service returns status "200" along with a JSON response body consisting of the new user's "userID", "username" and "isTechAgent".
-- If the passwords do not match or there is no user with that username, the service returns status "200" and an empty body response.
+- POST `localhost:8080/user/login`
+  - Takes POST requests with JSON in the request body. JSON should have keys "username" and "password". 
+  - The microservice will then find a user with the same username in the database and check if the provided password is a match with the encrypted one in the database.
+  - If the passwords match, the service returns status "200" along with a JSON response body consisting of the new user's "userID", "username" and "isTechAgent".
+  - If the passwords do not match or there is no user with that username, the service returns status "200" and an empty body response.
